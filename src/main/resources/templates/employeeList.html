@@ -1,0 +1,85 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Matching Flights</title>
+<style>
+fieldset {
+	border-radius: 4px;
+}
+
+div {
+	width: 400px;
+	margin-left: calc(50% - 200px);
+	margin-bottom: 30px;
+}
+
+form input {
+	float: right;
+	margin-right: 20px;
+	border: 0.5px solid black;
+}
+
+table {
+	width: 60%;
+	margin: auto;
+}
+
+table, tr, td, th {
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+p {
+	/* margin:10px 20px 0px 0px; */
+	font-size: small;
+	float: right;
+	color: red;
+}
+</style>
+</head>
+<body>
+	<div id="nameUser">
+		<form th:action="@{/logout}" method="post">
+			<p>
+			<h1>
+				Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+				<h1>
+					</p>
+					<input type="submit" value="Sign Out" />
+		</form>
+		<form th:action="@{/addEmployee}" method="get">
+			<input type="submit" value="Add Employee">
+		</form>
+	</div>
+	<br>
+	<br>
+
+	<table>
+		<tr>
+			<th>Employee Code</th>
+			<th>Employee Name</th>
+			<th>Location</th>
+			<th>Email</th>
+			<th>Date of Birth</th>
+			<th>Action</th>
+		</tr>
+
+		<tr th:each="listValue : ${employeeList}">
+			<td th:text="${listValue.id}"></td>
+			<td th:text="${listValue.name}"></td>
+			<td th:text="${listValue.location}"></td>
+			<td th:text=" ${listValue.email}"></td>
+			<td th:text=" ${listValue.dateOfBirth}"></td>
+			<td><form th:action="@{/editEmployee}" method="get">
+					<input type="hidden" name="employeeId" th:value="${listValue.id}">
+					<button type="submit">Edit</button>
+				</form></td>
+		</tr>
+
+
+	</table>
+
+</body>
+</html>

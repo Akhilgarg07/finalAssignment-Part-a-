@@ -1,0 +1,31 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Matching Flights</title>
+</head>
+<body>
+	<div id="nameUser">
+		<form th:action="@{/logout}" method="post">
+			<p>
+			<h1>
+				Welcome <b>[[${#request.userPrincipal.principal.fullName}]]</b>
+				<h1>
+					</p>
+					<input type="submit" value="Sign Out" />
+		</form>
+	</div>
+	<br>
+	<br>
+	<form th:action="@{/editEmployee}" method="post">
+	<label>Employee Code <input type="text" name="id" th:value="${employee.id}" readonly></label> <br><br>
+	<label>Employee Name <input type="text" name="name" th:value="${employee.name}"></label> <br><br>
+	<label>Location <input type="text"  name="location" th:value="${employee.location}"></label> <br><br>
+	<label>Email <input type="text" name="email" th:value="${employee.email}"></label> <br><br>
+	<label>Date of Birth <input type="date" name="dateOfBirth" ></label> <br><br>
+				<button type="submit">Save</button>
+	</form>
+	</td>
+
+</body>
+</html>
