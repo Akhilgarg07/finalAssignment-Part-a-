@@ -18,26 +18,12 @@ import com.nagarro.hrLogin.repo.EmployeeRepo;
 @Service
 public class EmployeeService {
 
-	@Autowired
-	private EmployeeRepo employeeRepo;
-
 	public List<Employee> allEmployees = new ArrayList<Employee>();
 	RestTemplate restTemplate = new RestTemplate();
 
 	public Employee[] getEmployees() {
 
-		
 		Employee[] employeeList = restTemplate.getForObject(Constants.URI, Employee[].class);
-//		for (Employee emp : employeeList) {
-//			Employee employee = new Employee();
-////			employee.setId(emp.getId());
-//			employee.setName(emp.getName());
-//			employee.setEmail(emp.getEmail());
-//			employee.setLocation(emp.getLocation());
-//			employee.setDateOfBirth(emp.getDateOfBirth());
-//			employeeRepo.save(employee);
-//			allEmployees.add(employee);
-//		}
 		return employeeList;
 	}
 
@@ -46,8 +32,8 @@ public class EmployeeService {
 		Employee employee = restTemplate.getForObject(Constants.URI + id, Employee.class);
 		return employee;
 	}
-	
-	public HttpEntity<Employee> getEntity(Employee employee){
+
+	public HttpEntity<Employee> getEntity(Employee employee) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -56,19 +42,19 @@ public class EmployeeService {
 		newEmployee.setLocation(employee.getLocation());
 		newEmployee.setEmail(employee.getEmail());
 		newEmployee.setDateOfBirth(employee.getDateOfBirth());
-		HttpEntity<Employee> entity = new HttpEntity<>(newEmployee,headers);
+		HttpEntity<Employee> entity = new HttpEntity<>(newEmployee, headers);
 		return entity;
 	}
-	
+
 	public Employee addNewEmployee(Employee employee) {
 		HttpEntity<Employee> entity = getEntity(employee);
-		
+
 		return restTemplate.postForObject(Constants.URI, entity, Employee.class);
 	}
-	
+
 	public void updateEmployee(Employee employee) {
 		HttpEntity<Employee> entity = getEntity(employee);
-		restTemplate.put(Constants.URI+employee.getId(), entity, employee.getId());
+		restTemplate.put(Constants.URI + employee.getId(), entity, employee.getId());
 	}
 
 }

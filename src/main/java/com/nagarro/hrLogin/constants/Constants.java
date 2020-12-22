@@ -10,5 +10,5 @@ public class Constants {
 	public final static String EDITEMPLOYEE = "editEmployee";
 	public final static String ADDEMPLOYEE = "addEmployee";
 	public final static String REDIRECTURL = "redirect:employeeList";
-	
+
 }

@@ -11,13 +11,12 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.nagarro.hrLogin.entity.User;
 import com.nagarro.hrLogin.repository.UserRepository;
 
-
 public class CustomUsersDetailsService implements UserDetails, UserDetailsService {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private UserRepository userRepo;
 
@@ -65,7 +64,6 @@ public class CustomUsersDetailsService implements UserDetails, UserDetailsServic
 	public String getFullName() {
 		return user.getFirstName() + " " + user.getLastName();
 	}
-	
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
