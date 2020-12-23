@@ -2,13 +2,13 @@ package com.nagarro.hrLogin.constants;
 
 public class Constants {
 
-	public final static String INDEX = "index";
-	public final static String SIGNUP = "signup";
-	public final static String REGISTERSUCCESS = "register_success";
-	public final static String URI = "http://localhost:8080/employees/";
-	public final static String EMPLOYEELIST = "employeeList";
-	public final static String EDITEMPLOYEE = "editEmployee";
-	public final static String ADDEMPLOYEE = "addEmployee";
-	public final static String REDIRECTURL = "redirect:employeeList";
+	public static final String INDEX = "index";
+	public static final String SIGNUP = "signup";
+	public static final String REGISTERSUCCESS = "register_success";
+	public static final String URI = "http://localhost:8082/employees/";
+	public static final String EMPLOYEELIST = "employeeList";
+	public static final String EDITEMPLOYEE = "editEmployee";
+	public static final String ADDEMPLOYEE = "addEmployee";
+	public static final String REDIRECTURL = "redirect:employeeList";
 
 }

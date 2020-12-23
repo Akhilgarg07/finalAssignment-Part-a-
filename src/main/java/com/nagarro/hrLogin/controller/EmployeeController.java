@@ -1,7 +1,13 @@
 package com.nagarro.hrLogin.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -12,6 +18,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
 import com.nagarro.hrLogin.constants.Constants;
 import com.nagarro.hrLogin.entity.Employee;
@@ -61,4 +70,10 @@ public class EmployeeController {
 		return Constants.REDIRECTURL;
 	}
 
-}
+	@GetMapping("/download/employee.csv")
+	public void downloadCsv(HttpServletResponse response) throws IOException {
+        response.setContentType("text/csv");
+        response.setHeader("Content-Disposition", "attachment; file=employee.csv");
+        employeeService.downloadCsv(response.getWriter());
+        
+    }}

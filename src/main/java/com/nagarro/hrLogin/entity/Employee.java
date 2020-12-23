@@ -2,10 +2,11 @@ package com.nagarro.hrLogin.entity;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+import lombok.Data;
+
+@Data
 public class Employee {
 
 	private @Id Long id;

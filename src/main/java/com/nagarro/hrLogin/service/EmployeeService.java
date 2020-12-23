@@ -1,10 +1,10 @@
 package com.nagarro.hrLogin.service;
 
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import com.nagarro.hrLogin.constants.Constants;
 import com.nagarro.hrLogin.entity.Employee;
-import com.nagarro.hrLogin.repo.EmployeeRepo;
 
 @Service
 public class EmployeeService {
@@ -56,5 +55,16 @@ public class EmployeeService {
 		HttpEntity<Employee> entity = getEntity(employee);
 		restTemplate.put(Constants.URI + employee.getId(), entity, employee.getId());
 	}
+	
+	public void downloadCsv(PrintWriter writer) {
+		writer.write("Employee ID, Name, Location, Email,Date of Birth \n");
+		Employee[] employees = getEmployees();
+		for (Employee employee : employees) {
+			writer.write(employee.getId() + "," + employee.getName() + "," + employee.getLocation() + ","
+					+ employee.getEmail() + "," + employee.getDateOfBirth() + "\n");
+		}
+
+	}
+
 
 }
